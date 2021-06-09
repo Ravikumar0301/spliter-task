@@ -21,14 +21,14 @@ export class AddDetails extends React.Component<any,any>{
         const val = this.state.balance + this.state.input_val
         this.setState({balance: val,showError: false})
         let date = new Date().toString();
-        this.props.childData (`Amount ${val} added to balance on ${date}`);
+        this.props.childData (`Amount ${this.state.input_val} added to balance on ${date}`);
     }
 
     onRemove = () => {
         const val = this.state.balance - this.state.input_val
         this.setState({balance: val})
         let date = new Date().toString();
-        this.props.childData (`Amount ${val} removed to balance on ${date}`)
+        this.props.childData (`Amount ${this.state.input_val} removed to balance on ${date}`)
     }
 
     render(){

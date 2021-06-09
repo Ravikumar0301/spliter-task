@@ -10,21 +10,21 @@ export class AddDetails extends React.Component<any,any>{
             time: '',
             input_val:0
         }
-        this.props.childData ("Hi");
+
         this.onAdd = this.onAdd.bind(this);
         this.onRemove = this.onRemove.bind(this);
     }
     
-    onAdd() {
+    onAdd = () => {
         const val = this.state.balance + this.state.input_val
-        console.log(typeof(this.state.balance))
-        console.log(this.state.input_val)
-        return this.setState({balance: val})
+        this.setState({balance: val})
+        this.props.childData ("Add");
     }
 
-    onRemove(){
+    onRemove = () => {
         const val = this.state.balance - this.state.input_val
-        return this.setState({balance: val})
+        this.setState({balance: val})
+        this.props.childData ("Remove");
     }
 
     render(){

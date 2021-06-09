@@ -8,12 +8,13 @@ export class Main extends React.Component <any,any>{
     constructor(props:any){
         super(props);
         this.state = {
-            addDetails_Data: null
+            addDetails_Data: []
         }
     }
     
     getDetails = (data:any) => {
-        this.setState({addDetails_Data : data})
+        this.state.addDetails_Data.push(data)
+        this.setState({addDetails_Data :this.state.addDetails_Data })
     }
 
 

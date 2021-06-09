@@ -6,25 +6,29 @@ export class AddDetails extends React.Component<any,any>{
         super(props);
         this.state = {
             balance: 0,
-            amount:'',
-            time: '',
-            input_val:0
+            input_val:0,showError:false
         }
-
-        this.onAdd = this.onAdd.bind(this);
-        this.onRemove = this.onRemove.bind(this);
     }
     
     onAdd = () => {
+        if(this.state.input_val<=0){
+            this.setState({
+                showError: true
+            });
+            return;
+        }
+        
         const val = this.state.balance + this.state.input_val
-        this.setState({balance: val})
-        this.props.childData ("Add");
+        this.setState({balance: val,showError: false})
+        let date = new Date().toString();
+        this.props.childData (`Amount ${val} added to balance on ${date}`);
     }
 
     onRemove = () => {
         const val = this.state.balance - this.state.input_val
         this.setState({balance: val})
-        this.props.childData ("Remove");
+        let date = new Date().toString();
+        this.props.childData (`Amount ${val} removed to balance on ${date}`)
     }
 
     render(){
@@ -32,9 +36,12 @@ export class AddDetails extends React.Component<any,any>{
             <div>
                 <header>Add Details</header>
                 <p>Balance: {this.state.balance}</p>
-                <input type="number" onChange = { (e) => {
+                <input type="number" min="0" onChange = { (e) => {
                     this.setState({input_val: e.target.valueAsNumber })
                 }}></input>
+                {
+                    this.state.showError && <div> Enter valid amount </div>
+                }
                 <div>
                     <button onClick= {this.onAdd}>Add</button>
                     <button onClick={this.onRemove}>Remove</button>

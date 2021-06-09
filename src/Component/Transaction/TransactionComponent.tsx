@@ -12,7 +12,7 @@ export class Transaction extends React.Component<any,any> {
         return(
             <div>
                 <header>Transaction</header>
-                {this.state.data}
+                {this.state.data.map((tr:any,i:any)=><div key={i}>{tr}</div>)}
             </div>
         )
     }
